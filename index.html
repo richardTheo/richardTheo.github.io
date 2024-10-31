@@ -3,22 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>CalCam</title>
-
-    <!-- Favicon Link -->
     <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon">
-
     <style>
-        /* Global Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #141218;
             color: #333;
-            overflow-x: hidden; /* Prevent horizontal scroll due to transforms */
+            overflow-x: hidden;
         }
-
-        /* Header Styles */
         header {
             background-color: #141218;
             color: white;
@@ -28,14 +22,12 @@
             position: relative;
             overflow: hidden;
         }
-
         header h1 {
             margin: 0;
             font-size: 36px;
             position: relative;
             z-index: 1;
         }
-
         .header-box-2 {
             position: absolute;
             top: 50%;
@@ -47,7 +39,6 @@
             border-radius: 10px;
             z-index: 0;
         }
-
         .header-box {
             position: absolute;
             top: 50%;
@@ -58,7 +49,6 @@
             background-color: #F0906D;
             border-radius: 3px;
         }
-
         .header-image {
             position: absolute;
             right: 10px;
@@ -68,20 +58,15 @@
             height: auto;
             z-index: 1;
         }
-
-        /* Container Styles */
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 40px auto;
         }
-
         h2 {
             padding-bottom: 10px;
             color: white;
         }
-
-        /* Screenshots Section */
         .screenshots {
             position: relative;
             display: flex;
@@ -94,38 +79,48 @@
             width: 80%;
             max-width: 1200px;
         }
-
-        /* Bottom Gradient Overlay */
         .screenshots-overlay-bottom {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
-            height: 20%; /* Adjust the height as needed for the fade effect */
+            height: 20%;
             background: linear-gradient(to top, rgba(20, 18, 24, 1), rgba(20, 18, 24, 0));
             pointer-events: none;
             z-index: 2;
         }
-
         .screenshots img {
             flex: 0 0 calc(33.33% - 10px);
             max-width: 30%;
             margin: 0 5px;
             transition: transform 0.0s;
         }
-
         .screenshots img:first-child {
             margin-left: 0;
         }
-
-        /* Privacy Policy and Terms Styles */
         .legal-section {
+            padding: 40px 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            margin-bottom: 40px;
             line-height: 1.6;
             color: white;
-            margin-bottom: 40px;
         }
-
-        /* Footer Styles */
+        .legal-section h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .legal-section h3 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .legal-section p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
         footer {
             background-color: #141218;
             text-align: center;
@@ -133,31 +128,26 @@
             margin-top: 60px;
             color: #666;
         }
-
-        /* Features Section */
         .features {
             padding: 40px 20px;
             background-color: #1e1e1e;
-            border-radius: 10px; /* Rounded corners */
+            border-radius: 10px;
             margin-bottom: 40px;
         }
-
         .features h2 {
             text-align: center;
             color: white;
             margin-bottom: 30px;
             font-size: 32px;
         }
-
         .feature-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
         }
-
         .feature-box {
-            position: relative; /* For positioning the colored box */
+            position: relative;
             width: 80%;
             max-width: 600px;
             background-color: #303030;
@@ -165,12 +155,16 @@
             padding: 20px 20px 20px 60px;
             color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex; /* Added for flex layout */
+            display: flex;
             align-items: center;
-            justify-content: space-between; /* Space between content and icon */
+            justify-content: space-between;
+            cursor: grab;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            user-select: none;
         }
-
-        /* Existing .feature-box-decor styles */
+        .feature-box:active {
+            cursor: grabbing;
+        }
         .feature-box-decor {
             position: absolute;
             top: 50%;
@@ -180,48 +174,44 @@
             height: 80%;
             border-radius: 3px;
         }
-
-        /* Unique styles for each decor */
         .decor-one {
-            background-color: #F0906D; /* Original color */
+            background-color: #F0906D;
         }
-
         .decor-two {
-            background-color: #69B3AB; /* Second color */
+            background-color: #69B3AB;
         }
-
         .decor-three {
-            background-color: #DF6B92; /* Third color */
+            background-color: #DF6B92;
         }
-
         .feature-content {
-            flex: 1; /* Allow content to take available space */
+            flex: 1;
         }
-
         .feature-box h3 {
             margin-top: 0;
             font-size: 24px;
             margin-bottom: 10px;
         }
-
         .feature-box p {
             margin: 0;
             line-height: 1.6;
         }
-
-        /* Icon Styles */
         .feature-icon {
-            width: 45px; /* Adjust icon size as needed */
+            width: 45px;
             height: auto;
-            margin-left: 20px; /* Space between content and icon */
+            margin-left: 20px;
         }
-
-        /* Responsive Adjustments */
+        .custom-link {
+            color: white;
+            text-decoration: none;
+            font-family: "Courier New", Courier, monospace;
+        }
+        .custom-link:hover {
+            color: grey;
+        }
         @media (max-width: 480px) {
             .screenshots {
-                height: auto; /* Allow height to adjust based on content */
+                height: auto;
             }
-
             .screenshots img {
                 flex: 1 1 calc(100% - 10px);
                 margin-left: 5px;
@@ -229,45 +219,37 @@
                 max-width: 100%;
                 height: auto;
             }
-
             .header-box-2 {
                 width: 95%;
                 height: 70%;
             }
-
             header {
                 height: 160px;
             }
-
             header h1 {
                 font-size: 24px;
             }
-
             .header-image {
                 width: 35px;
             }
-
-            .features h2 {
+            .features h2,
+            .legal-section h2 {
                 font-size: 24px;
             }
-
             .feature-box {
                 width: 100%;
                 padding: 20px 20px 20px 60px;
-                flex-direction: column; /* Stack content and icon vertically */
+                flex-direction: column;
                 align-items: flex-start;
             }
-
             .feature-icon {
                 margin-left: 0;
                 margin-top: 10px;
             }
-
-            .feature-box h3 {
+            .feature-box h3,
+            .legal-section h3 {
                 font-size: 18px;
             }
-
-            /* Adjust the bottom overlay height for smaller screens */
             .screenshots-overlay-bottom {
                 height: 100px;
             }
@@ -279,27 +261,19 @@
 <header>
     <div class="header-box-2">
         <div class="header-box"></div>
-
-        <!-- Header Image -->
         <img src="ic_launcher_foreground.png" alt="Header Icon" class="header-image">
     </div>
     <h1>CalCam</h1>
 </header>
 
 <div class="container">
-
-    <!-- Screenshots Section -->
     <section class="screenshots">
         <img src="1.png" alt="Screenshot 1">
         <img src="2.png" alt="Screenshot 2">
         <img src="3.png" alt="Screenshot 3">
-        <!-- Add more screenshots if needed -->
-
-        <!-- Bottom Gradient Overlay -->
         <div class="screenshots-overlay-bottom"></div>
     </section>
 
-    <!-- Features Section -->
     <section class="features">
         <h2>Features</h2>
         <div class="feature-container">
@@ -330,49 +304,80 @@
         </div>
     </section>
 
-    <!-- Privacy Policy Section -->
     <section class="legal-section">
         <h2>Privacy Policy</h2>
-        <p>
-            <!-- Insert your privacy policy text here -->
-            Please insert your app's privacy policy in this section. Ensure it complies with all relevant laws and regulations.
-        </p>
-    </section>
+        <section class="data-collection">
+            <h3>Data Collection</h3>
+            <p>CalCam does not collect any data from your device. You have full control over any content you create within the app and may choose to share it with others at your discretion. All data is stored locally on your device, so please remember to back up any important information.</p>
+        </section>
 
-    <!-- Terms of Use Section -->
-    <section class="legal-section">
-        <h2>Terms of Use</h2>
-        <p>
-            <!-- Insert your terms of use text here -->
-            Please insert your app's terms of use in this section. Ensure it clearly outlines the rules and guidelines for using your app.
-        </p>
-    </section>
+        <section class="permissions">
+            <h3>Permissions</h3>
+            <p>The app may request access to your calendar, camera, or gallery to enable certain features. These permissions are optional, and you can disable them at any time if desired.</p>
+        </section>
 
+        <section class="contact-info">
+            <h3>Contact Information</h3>
+            <p>For any questions, feel free to contact us at 
+                <a href="mailto:richard.calcam@gmail.com" class="custom-link">richard.calcam@gmail.com</a>. 
+                If you reach out via email, your contact information will be used solely to address and respond to your inquiry.
+            </p>
+        </section>
+    </section>
 </div>
 
-<!-- Footer -->
-<footer>
-    <!-- &copy; 2023 Your Company Name. All rights reserved. -->
-    <br>
-    <a href="https://www.linkedin.com/in/your-profile/" target="_blank">Connect with me on LinkedIn</a>
-</footer>
+<footer></footer>
 
-<!-- JavaScript for Scroll Effect -->
 <script>
-    // JavaScript to change y position of screenshots on scroll
     window.addEventListener('scroll', function() {
         var scrollPosition = window.scrollY;
         var images = document.querySelectorAll('.screenshots img');
-
         images.forEach(function(img, index) {
-            var speed = (index + 1) * 0.2; // Adjust speed for each image
-
+            var speed = (index + 1) * 0.2;
             var offsetY = scrollPosition * speed;
-
-            // Apply vertical movement
             if (offsetY <= 40 + index * 100 && offsetY >= 0){
                 img.style.transform = 'translateY(' + offsetY + 'px)';
             }
+        });
+    });
+
+    const featureBoxes = document.querySelectorAll('.feature-box');
+    featureBoxes.forEach(box => {
+        let isDragging = false;
+        let startX = 0, currentX = 0, deltaX = 0;
+        box.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            box.style.transition = 'none';
+        });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            currentX = e.clientX;
+            deltaX = currentX - startX;
+            box.style.transform = `translateX(${deltaX}px)`;
+        });
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            box.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+            box.style.transform = 'translateX(0)';
+        });
+        box.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            box.style.transition = 'none';
+        });
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            deltaX = currentX - startX;
+            box.style.transform = `translateX(${deltaX}px)`;
+        });
+        document.addEventListener('touchend', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            box.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+            box.style.transform = 'translateX(0)';
         });
     });
 </script>
