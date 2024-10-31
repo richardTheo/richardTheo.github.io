@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CalCam</title>
+
+    <!-- Favicon Link -->
+    <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon">
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141218;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll due to transforms */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #141218;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-box-2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80px;
+            background-color: #303030;
+            border-radius: 10px;
+            z-index: 0;
+        }
+
+        .header-box {
+            position: absolute;
+            top: 50%;
+            left: 4px;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 80%;
+            background-color: #F0906D;
+            border-radius: 3px;
+        }
+
+        .header-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Container Styles */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        h2 {
+            padding-bottom: 10px;
+            color: white;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            position: relative;
+            display: flex;
+            height: 200%;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: hidden;
+            margin: 0 auto 20px auto;
+            width: 80%;
+            max-width: 1200px;
+        }
+
+        /* Bottom Gradient Overlay */
+        .screenshots-overlay-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 20%; /* Adjust the height as needed for the fade effect */
+            background: linear-gradient(to top, rgba(20, 18, 24, 1), rgba(20, 18, 24, 0));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .screenshots img {
+            flex: 0 0 calc(33.33% - 10px);
+            max-width: 30%;
+            margin: 0 5px;
+            transition: transform 0.0s;
+        }
+
+        .screenshots img:first-child {
+            margin-left: 0;
+        }
+
+        /* Privacy Policy and Terms Styles */
+        .legal-section {
+            line-height: 1.6;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #141218;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 60px;
+            color: #666;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 40px 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 40px;
+        }
+
+        .features h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .feature-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .feature-box {
+            position: relative; /* For positioning the colored box */
+            width: 80%;
+            max-width: 600px;
+            background-color: #303030;
+            border-radius: 10px;
+            padding: 20px 20px 20px 60px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex; /* Added for flex layout */
+            align-items: center;
+            justify-content: space-between; /* Space between content and icon */
+        }
+
+        /* Existing .feature-box-decor styles */
+        .feature-box-decor {
+            position: absolute;
+            top: 50%;
+            left: 2px;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 80%;
+            border-radius: 3px;
+        }
+
+        /* Unique styles for each decor */
+        .decor-one {
+            background-color: #F0906D; /* Original color */
+        }
+
+        .decor-two {
+            background-color: #69B3AB; /* Second color */
+        }
+
+        .decor-three {
+            background-color: #DF6B92; /* Third color */
+        }
+
+        .feature-content {
+            flex: 1; /* Allow content to take available space */
+        }
+
+        .feature-box h3 {
+            margin-top: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Icon Styles */
+        .feature-icon {
+            width: 45px; /* Adjust icon size as needed */
+            height: auto;
+            margin-left: 20px; /* Space between content and icon */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .screenshots {
+                height: auto; /* Allow height to adjust based on content */
+            }
+
+            .screenshots img {
+                flex: 1 1 calc(100% - 10px);
+                margin-left: 5px;
+                margin-right: 5px;
+                max-width: 100%;
+                height: auto;
+            }
+
+            .header-box-2 {
+                width: 95%;
+                height: 70%;
+            }
+
+            header {
+                height: 160px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .header-image {
+                width: 35px;
+            }
+
+            .features h2 {
+                font-size: 24px;
+            }
+
+            .feature-box {
+                width: 100%;
+                padding: 20px 20px 20px 60px;
+                flex-direction: column; /* Stack content and icon vertically */
+                align-items: flex-start;
+            }
+
+            .feature-icon {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .feature-box h3 {
+                font-size: 18px;
+            }
+
+            /* Adjust the bottom overlay height for smaller screens */
+            .screenshots-overlay-bottom {
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-box-2">
+        <div class="header-box"></div>
+
+        <!-- Header Image -->
+        <img src="ic_launcher_foreground.png" alt="Header Icon" class="header-image">
+    </div>
+    <h1>CalCam</h1>
+</header>
+
+<div class="container">
+
+    <!-- Screenshots Section -->
+    <section class="screenshots">
+        <img src="1.png" alt="Screenshot 1">
+        <img src="2.png" alt="Screenshot 2">
+        <img src="3.png" alt="Screenshot 3">
+        <!-- Add more screenshots if needed -->
+
+        <!-- Bottom Gradient Overlay -->
+        <div class="screenshots-overlay-bottom"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Features</h2>
+        <div class="feature-container">
+            <div class="feature-box">
+                <div class="feature-box-decor decor-one"></div>
+                <div class="feature-content">
+                    <h3>Easy Picture Management</h3>
+                    <p>CalCam knows when you have an event and automatically saves it to the corresponding project so it is easy to find later.</p>
+                </div>
+                <img src="cam.png" alt="Easy Picture Management Icon" class="feature-icon">
+            </div>
+            <div class="feature-box">
+                <div class="feature-box-decor decor-two"></div>
+                <div class="feature-content">
+                    <h3>Import Events</h3>
+                    <p>Simply add the events from your current calendar. Each recurring event gets automatically added to your events list, so no tedious adding is needed.</p>
+                </div>
+                <img src="cal.png" alt="Import Events Icon" class="feature-icon">
+            </div>
+            <div class="feature-box">
+                <div class="feature-box-decor decor-three"></div>
+                <div class="feature-content">
+                    <h3>Many More</h3>
+                    <p>Archive your older projects, add a note to each picture taken, view your calendar...</p>
+                </div>
+                <img src="more.png" alt="Additional Features Icon" class="feature-icon">
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section class="legal-section">
+        <h2>Privacy Policy</h2>
+        <p>
+            <!-- Insert your privacy policy text here -->
+            Please insert your app's privacy policy in this section. Ensure it complies with all relevant laws and regulations.
+        </p>
+    </section>
+
+    <!-- Terms of Use Section -->
+    <section class="legal-section">
+        <h2>Terms of Use</h2>
+        <p>
+            <!-- Insert your terms of use text here -->
+            Please insert your app's terms of use in this section. Ensure it clearly outlines the rules and guidelines for using your app.
+        </p>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <!-- &copy; 2023 Your Company Name. All rights reserved. -->
+    <br>
+    <a href="https://www.linkedin.com/in/your-profile/" target="_blank">Connect with me on LinkedIn</a>
+</footer>
+
+<!-- JavaScript for Scroll Effect -->
+<script>
+    // JavaScript to change y position of screenshots on scroll
+    window.addEventListener('scroll', function() {
+        var scrollPosition = window.scrollY;
+        var images = document.querySelectorAll('.screenshots img');
+
+        images.forEach(function(img, index) {
+            var speed = (index + 1) * 0.2; // Adjust speed for each image
+
+            var offsetY = scrollPosition * speed;
+
+            // Apply vertical movement
+            if (offsetY <= 40 + index * 100 && offsetY >= 0){
+                img.style.transform = 'translateY(' + offsetY + 'px)';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
